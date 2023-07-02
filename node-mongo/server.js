@@ -9,7 +9,7 @@ async function init() {
 	});
 	await client.connect();
 
-  const app = express();
+	const app = express();
 
 	app.get("/get", async (req, res) => {
 		const db = await client.db("adoption");
@@ -22,7 +22,7 @@ async function init() {
 						$search: req.query.search,
 					},
 				},
-				{ _id: 0 }
+				{ _id: false }
 			)
 			.sort({ score: { $meta: "textScore" } })
 			.limit(10)
