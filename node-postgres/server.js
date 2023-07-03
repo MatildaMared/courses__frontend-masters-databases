@@ -1,4 +1,4 @@
-const { express } = require("express");
+const express = require("express");
 const { Pool } = require("pg");
 
 const pool = new Pool({
@@ -27,15 +27,13 @@ async function init() {
 			board: boardResponse.rows[0] || {},
 			posts: commentResponse.rows || [],
 		});
-
-		const PORT = 3000;
-
-		app.use(express.static("./static"));
-
-		app.listen(PORT, () => {
-			console.log(`Listening on port ${PORT}`);
-		});
 	});
+
+	const PORT = process.env.PORT || 3000;
+	app.use(express.static("./static"));
+	app.listen(PORT);
+
+	console.log(`running on http://localhost:${PORT}`);
 }
 
 init();
