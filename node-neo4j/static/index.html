@@ -10,7 +10,7 @@
 		<input type="text" placeholder="Person 2" id="person2" />
 		<button id="button">Search</button>
 		<pre>
-    <code id="code">ß</code>
+    <code id="code"></code>
   </pre>
 
 		<script>
@@ -24,7 +24,7 @@
 				const response = await fetch(
 					`/get?person1=${encodeURIComponent(
 						person1.value
-					)}&person2=${encodeURIComponent(person1.value)}`
+					)}&person2=${encodeURIComponent(person2.value)}`
 				);
 				const json = await response.json();
 				code.innerText = "\n" + JSON.stringify(json, null, 4);

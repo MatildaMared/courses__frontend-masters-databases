@@ -13,11 +13,11 @@ async function init() {
 
 		const result = await session.run(
 			`
-      MATCH path = shortestPath(
-        (First:Person {name: $person1})-[*]-(Second:Person {name: $person2})
-      )
-      UNWIND nodes(path) as node
-      RETURN coalesce(node.name, node.title) AS text;
+        MATCH path = shortestPath(
+            (First:Person {name: $person1 })-[*]-(Second:Person {name: $person2 })
+        )
+        UNWIND nodes(path) as node
+        RETURN coalesce(node.name, node.title) as text;
     `,
 			{
 				person1: req.query.person1,
