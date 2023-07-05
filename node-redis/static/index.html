@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Redis Sample</title>
+	</head>
+	<body>
+		<h1 id="visitors">Loading...</h1>
+
+		<script>
+			async function registerPageView() {
+				const response = await fetch("/pageview");
+				const { views } = await response.json();
+				document.getElementById("visitors").innerText = `${views} visitors! 🌸`;
+			}
+
+			registerPageView();
+		</script>
+	</body>
+</html>
