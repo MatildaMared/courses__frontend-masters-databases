@@ -11,7 +11,6 @@ function cache(key, ttl, slowFn) {
 	return async function cachedFn(...props) {
 		const cachedResponse = await rGet(key);
 		if (cachedResponse) {
-			console.log("I'm cached 😎");
 			return cachedResponse;
 		}
 
@@ -23,7 +22,6 @@ function cache(key, ttl, slowFn) {
 
 async function verySlowAndExpensivePostgresQLQuery() {
 	// here you would do a really expensive query to your database
-	console.log("Oh no, I'm a slow query 😭");
 	const promise = new Promise((resolve) => {
 		setTimeout(() => {
 			resolve(new Date().toISOString());
@@ -49,10 +47,10 @@ async function init() {
 
 	app.get("/get", async (req, res) => {
 		const response = await cachedFn();
-		response
+		res
 			.json({
 				status: "ok",
-				data,
+        data: response,
 			})
 			.end();
 	});
